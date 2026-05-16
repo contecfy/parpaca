@@ -1,5 +1,6 @@
 import AboutSection from "@/components/sections/About";
 import BottomCTA from "@/components/sections/Bottom-CTA";
+import Collaboration from "@/components/sections/Collaboration";
 import Hero from "@/components/sections/Hero";
 import KeyFoucs from "@/components/sections/KeyFocuses";
 import TeamSection from "@/components/sections/Team";
@@ -13,6 +14,7 @@ export default function Home() {
       <AboutSection />
       <Whatwedo />
       <KeyFoucs />
+      <Collaboration />
       <TeamSection />
       <BottomCTA />
     </div>

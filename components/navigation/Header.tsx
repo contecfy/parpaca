@@ -36,18 +36,18 @@ function Header() {
         <>
             <header
                 className={`
-               sticky top-0 z-50 w-full transition-all duration-500 -mb-24
+               sticky top-0 z-50 w-full transition-all duration-500 -mb-18 md:-mb-24
                ${scrolled
-                        ? 'bg-white shadow-sm backdrop-blur-xl'
+                        ? 'bg-white border-b  backdrop-blur-xl'
                         : 'bg-transparent'
                     }
             `}
             >
-                <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-5 lg:px-8">
+                <div className="mx-auto flex h-16 md:h-24 max-w-7xl items-center justify-between px-5 lg:px-8">
 
                     {/* LOGO */}
                     <Link href="/" className="flex items-center gap-3">
-                        <div className="relative h-24 w-24 overflow-hidden">
+                        <div className="relative h-16 w-16 md:h-24 md:w-24 overflow-hidden">
                             <Image
                                 src="/logo.jpg"
                                 alt="Parpaca Foundation Logo"
@@ -157,7 +157,7 @@ function Header() {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
                         className="
-                            fixed inset-0 top-20 z-40
+                            fixed inset-0 top-16 z-40
                             flex flex-col
                             overflow-hidden
                             lg:hidden

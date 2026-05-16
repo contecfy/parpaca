@@ -9,7 +9,7 @@ import {
     Phone,
 
 } from 'lucide-react'
-import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { FaFacebook, FaInstagram, FaLinkedin, FaWhatsapp } from 'react-icons/fa'
 import { FaX } from 'react-icons/fa6'
 
 function PreHeader() {
@@ -24,17 +24,26 @@ function PreHeader() {
                     <div className="flex items-center gap-2 text-white/70">
                         <MapPin size={15} className="text-primary" />
 
-                        <span>Kampala, Uganda</span>
+                        <span>Uganda, Central Kampala, Nakawa Division, Mbuya II,</span>
                     </div>
 
                     {/* PHONE */}
                     <Link
-                        href="tel:+256700000000"
+                        href="tel:+256772873735"
                         className="flex items-center gap-2 text-white/70 transition-colors duration-300 hover:text-white"
                     >
                         <Phone size={15} className="text-primary" />
 
-                        <span>+256 700 000 000</span>
+                        <span>+256 772 873 735</span>
+                    </Link>
+
+                    <Link
+                        href="tel:+4915214740368"
+                        className="flex items-center gap-2 text-white/70 transition-colors duration-300 hover:text-white"
+                    >
+                        <FaWhatsapp size={15} className="text-primary" />
+
+                        <span>+49 1521 474 0368</span>
                     </Link>
 
                     {/* EMAIL */}
@@ -44,7 +53,7 @@ function PreHeader() {
                     >
                         <Mail size={15} className="text-primary" />
 
-                        <span>hello@Parpacasicklecell.org</span>
+                        <span>info@parpacaafrica.org</span>
                     </Link>
                 </div>
 
