@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import { Menu, X, ArrowRight } from 'lucide-react'
+import { Menu, X, ArrowRight, CircleArrowOutUpRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../ui/Button'
 
@@ -12,7 +12,7 @@ const navItems = [
     { label: 'About Us', href: '/about-us' },
     { label: 'Services', href: '/services' },
     { label: 'Eco System Hub', href: '/eco-system-hub' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Contact Us', href: '/contact-us' },
 ]
 
 function Header() {
@@ -26,28 +26,28 @@ function Header() {
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
-    // Lock body scroll when menu is open
     useEffect(() => {
         document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
         return () => { document.body.style.overflow = '' }
     }, [mobileMenuOpen])
 
+    // Border color adapts to scroll state
+    const borderColor = scrolled ? 'border-black/10' : 'border-white/20'
+
     return (
         <>
             <header
                 className={`
-               sticky top-0 z-50 w-full transition-all duration-500 -mb-18 md:-mb-24
-               ${scrolled
-                        ? 'bg-white border-b  backdrop-blur-xl'
-                        : 'bg-transparent'
-                    }
-            `}
+                    sticky top-0 z-50 w-full transition-all duration-500 -mb-18 md:-mb-25
+                    border-t border-b ${borderColor}
+                    ${scrolled ? 'bg-white backdrop-blur-xl' : 'bg-transparent'}
+                `}
             >
-                <div className="mx-auto flex h-16 md:h-24 max-w-7xl items-center justify-between px-5 lg:px-8">
+                <div className="mx-auto flex h-16 md:h-24 max-w-7xl items-stretch justify-between">
 
                     {/* LOGO */}
-                    <Link href="/" className="flex items-center gap-3">
-                        <div className="relative h-16 w-16 md:h-24 md:w-24 overflow-hidden">
+                    <Link href="/" className="flex items-center gap-3 px-5 lg:px-8">
+                        <div className="relative h-16 w-16 md:h-24 md:w-24 overflow-hidden flex-shrink-0">
                             <Image
                                 src="/logo.jpg"
                                 alt="Parpaca Foundation Logo"
@@ -56,49 +56,43 @@ function Header() {
                                 priority
                             />
                         </div>
-
-                        <div className="hidden sm:block">
-                            <h2
-                                className={`
-                                text-lg font-bold tracking-tight transition-colors duration-300
-                                ${scrolled ? 'text-secondary' : 'text-white'}
-                            `}
-                            >
+                        <div className="">
+                            <h2 className={`text-lg font-bold tracking-tight transition-colors duration-300 ${scrolled ? 'text-secondary' : 'text-white'}`}>
                                 Parpaca
                             </h2>
-                            <p
-                                className={`
-                                text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300
-                                ${scrolled ? 'text-light-gray' : 'text-white/70'}
-                            `}
-                            >
+                            <p className={`hidden sm:block text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 ${scrolled ? 'text-light-gray' : 'text-white/70'}`}>
                                 Participatory Action Research and<br /> Policy Advocacy Centre
                             </p>
                         </div>
                     </Link>
 
-                    {/* DESKTOP NAV */}
-                    <nav className="hidden items-center gap-8 lg:flex">
+                    {/* DESKTOP NAV — each item bordered left+right, full header height */}
+                    <nav className="hidden items-stretch lg:flex">
                         {navItems.map((item) => (
                             <Link
                                 key={item.label}
                                 href={item.href}
                                 className={`
-                                group relative text-sm font-semibold transition-colors duration-300
-                                ${scrolled
+                                    group relative flex items-center px-6
+                                    border-l ${borderColor}
+                                    text-sm font-semibold transition-colors duration-300
+                                    ${scrolled
                                         ? 'text-secondary hover:text-primary'
                                         : 'text-white hover:text-primary'
                                     }
-                            `}
+                                `}
                             >
                                 {item.label}
-                                <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                                {/* underline on hover */}
+                                <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
                             </Link>
                         ))}
+                        {/* closing right border after last nav item */}
+                        <div className={`border-l ${borderColor}`} />
                     </nav>
 
                     {/* DESKTOP CTA */}
-                    <div className="hidden lg:block">
+                    <div className={`hidden items-center lg:flex border-l ${borderColor} px-6 lg:px-8`}>
                         <Button variant="primary" size="lg">
                             Become a Member
                             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -106,44 +100,46 @@ function Header() {
                     </div>
 
                     {/* MOBILE MENU BUTTON */}
-                    <button
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-                        className={`
-                        relative z-[60] flex h-10 w-10 items-center justify-center
-                        transition-all duration-300 lg:hidden
-                        ${mobileMenuOpen
-                                ? 'bg-primary text-white'
-                                : scrolled
-                                    ? 'text-secondary hover:bg-muted'
-                                    : 'text-white hover:bg-white/10'
-                            }
-                    `}
-                    >
-                        <AnimatePresence mode="wait" initial={false}>
-                            {mobileMenuOpen ? (
-                                <motion.span
-                                    key="close"
-                                    initial={{ rotate: -90, opacity: 0 }}
-                                    animate={{ rotate: 0, opacity: 1 }}
-                                    exit={{ rotate: 90, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <X size={22} />
-                                </motion.span>
-                            ) : (
-                                <motion.span
-                                    key="open"
-                                    initial={{ rotate: 90, opacity: 0 }}
-                                    animate={{ rotate: 0, opacity: 1 }}
-                                    exit={{ rotate: -90, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <Menu size={22} />
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
-                    </button>
+                    <div className="flex items-center px-5 lg:hidden">
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                            className={`
+                                relative z-[60] flex h-10 w-10 items-center justify-center
+                                transition-all duration-300
+                                ${mobileMenuOpen
+                                    ? 'bg-primary text-white'
+                                    : scrolled
+                                        ? 'text-secondary hover:bg-muted'
+                                        : 'text-white hover:bg-white/10'
+                                }
+                            `}
+                        >
+                            <AnimatePresence mode="wait" initial={false}>
+                                {mobileMenuOpen ? (
+                                    <motion.span
+                                        key="close"
+                                        initial={{ rotate: -90, opacity: 0 }}
+                                        animate={{ rotate: 0, opacity: 1 }}
+                                        exit={{ rotate: 90, opacity: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <X size={22} />
+                                    </motion.span>
+                                ) : (
+                                    <motion.span
+                                        key="open"
+                                        initial={{ rotate: 90, opacity: 0 }}
+                                        animate={{ rotate: 0, opacity: 1 }}
+                                        exit={{ rotate: -90, opacity: 0 }}
+                                        transition={{ duration: 0.2 }}
+                                    >
+                                        <Menu size={22} />
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </button>
+                    </div>
                 </div>
             </header>
 
@@ -156,21 +152,12 @@ function Header() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="
-                            fixed inset-0 top-16 z-40
-                            flex flex-col
-                            overflow-hidden
-                            lg:hidden
-                        "
+                        className="fixed inset-0 top-16 z-40 flex flex-col overflow-hidden lg:hidden"
                     >
-                        {/* LAYERED BACKDROP — matches the screenshot's deep dark blur */}
                         <div className="absolute inset-0 bg-black/75 backdrop-blur-2xl" />
                         <div className="absolute inset-0 bg-black/20 backdrop-blur-3xl" />
 
-                        {/* CONTENT */}
                         <div className="relative flex h-full flex-col">
-
-                            {/* NAV ITEMS */}
                             <nav className="flex flex-col pt-4">
                                 {navItems.map((item, index) => (
                                     <motion.div
@@ -191,39 +178,27 @@ function Header() {
                                             onMouseLeave={() => setActiveItem(null)}
                                             className="group relative flex items-center overflow-hidden"
                                         >
-                                            {/* Active / hover highlight block — mimics the orange block in screenshot */}
                                             <motion.div
                                                 className="absolute inset-0 bg-primary"
                                                 initial={false}
-                                                animate={{
-                                                    scaleX: activeItem === item.label ? 1 : 0,
-                                                    originX: 0,
-                                                }}
+                                                animate={{ scaleX: activeItem === item.label ? 1 : 0 }}
+                                                style={{ originX: 0 }}
                                                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                                             />
-
-                                            {/* Square bullet */}
-                                            <span className="relative z-10 ml-6 mr-4 h-2 w-2 flex-shrink-0 bg-primary transition-colors duration-200 group-hover:bg-white" />
-
-                                            {/* Label */}
-                                            <span
-                                                className="
-                                                    relative z-10 py-5
-                                                    text-3xl font-bold uppercase tracking-wider
-                                                    text-white transition-colors duration-200
-                                                "
-                                            >
+                                            {item.label === 'Contact Us' ? (
+                                                <CircleArrowOutUpRight size={24} className="relative z-10 ml-6 mr-4 flex-shrink-0 text-primary transition-colors duration-200 group-hover:text-white" />
+                                            ) : (
+                                                <span className="relative z-10 ml-6 mr-4 h-2 w-2 flex-shrink-0 bg-primary transition-colors duration-200 group-hover:bg-white" />
+                                            )}
+                                            <span className="relative z-10 py-5 text-3xl font-bold uppercase tracking-wider text-white transition-colors duration-200">
                                                 {item.label}
                                             </span>
                                         </Link>
-
-                                        {/* Divider */}
                                         <div className="mx-6 h-px bg-white/10" />
                                     </motion.div>
                                 ))}
                             </nav>
 
-                            {/* CTA — pinned to bottom */}
                             <motion.div
                                 initial={{ opacity: 0, y: 24 }}
                                 animate={{ opacity: 1, y: 0 }}

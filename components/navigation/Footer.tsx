@@ -58,19 +58,19 @@ function Footer() {
                             <div className="flex items-start gap-3">
                                 <MapPin size={18} className="mt-0.5 text-primary" />
 
-                                <p>Kampala, Uganda</p>
+                                <p>Uganda, Central Kampala, Nakawa Division, Mbuya II,</p>
                             </div>
 
                             <div className="flex items-center gap-3">
                                 <Phone size={18} className="text-primary" />
 
-                                <p>+256 700 000 000</p>
+                                <p>+256 772 873 735</p>
                             </div>
 
                             <div className="flex items-center gap-3">
                                 <Mail size={18} className="text-primary" />
 
-                                <p>hello@Parpacasicklecell.org</p>
+                                <p>info@parpacaafrica.org</p>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@ function Footer() {
                     <div className="flex flex-col items-center justify-between gap-4 text-center text-sm text-white/50 md:flex-row">
 
                         <p>
-                            © {new Date().getFullYear()} Parpaca Foundation. All rights reserved.
+                            © {new Date().getFullYear()} Parpacaafrica.org. All rights reserved.
                         </p>
 
                         <div className="flex items-center gap-6">

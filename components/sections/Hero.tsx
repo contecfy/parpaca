@@ -25,7 +25,7 @@ function Hero() {
             <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/70" />
 
             {/* CONTENT */}
-            <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-32 lg:px-8">
+            <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-4 md:pt-32 lg:px-8">
                 <div className="max-w-4xl">
 
                     {/* MAIN HEADING */}
