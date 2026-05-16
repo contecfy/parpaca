@@ -72,23 +72,23 @@ function Header() {
                             <Link
                                 key={item.label}
                                 href={item.href}
-                                className={`
-                                    group relative flex items-center px-6
+                                className={` 
+                                    group relative flex items-center px-2 overflow-hidden
                                     border-l ${borderColor}
                                     text-sm font-semibold transition-colors duration-300
                                     ${scrolled
-                                        ? 'text-secondary hover:text-primary'
-                                        : 'text-white hover:text-primary'
+                                        ? 'text-secondary hover:text-white'
+                                        : 'text-white hover:text-white'
                                     }
                                 `}
                             >
-                                {item.label}
-                                {/* underline on hover */}
-                                <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                                <span className="relative z-10">{item.label}</span>
+                                {/* animated background fill */}
+                                <span className="absolute inset-0 z-0 scale-y-0 origin-bottom bg-primary transition-transform duration-300 ease-out group-hover:scale-y-100" />
                             </Link>
                         ))}
                         {/* closing right border after last nav item */}
-                        <div className={`border-l ${borderColor}`} />
+                        {/* <div className={`border-l ${borderColor}`} /> */}
                     </nav>
 
                     {/* DESKTOP CTA */}
