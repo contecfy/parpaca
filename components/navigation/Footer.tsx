@@ -49,7 +49,7 @@ function Footer() {
                         </div>
 
                         <p className="mt-6 max-w-md text-sm leading-7 text-white/70">
-                            We are a non-profit organization working to improve the lives of people affected by sickle cell disease in Uganda
+                            PARPACAs mission is to empower marginalized communities in Uganda through participatory action research, policy advocacy, and sustainable development initiatives.
                         </p>
 
                         {/* CONTACT INFO */}
