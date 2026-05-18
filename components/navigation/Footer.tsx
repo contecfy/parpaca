@@ -10,11 +10,10 @@ import { FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa'
 import { FaX } from 'react-icons/fa6'
 
 const quickLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'About Us', href: '/about' },
-    { label: 'Programs', href: '/programs' },
-    { label: 'Events', href: '/events' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'About Us', href: '/about-us' },
+    { label: 'Services', href: '/services' },
+    { label: 'Eco System Hub', href: '/eco-systems-hub' },
+    { label: 'Contact Us', href: '/contact-us' },
 ]
 
 function Footer() {
