@@ -11,7 +11,7 @@ const navItems = [
     { label: 'Home', href: '/' },
     { label: 'About Us', href: '/about-us' },
     { label: 'Services', href: '/services' },
-    { label: 'Eco System Hub', href: '/eco-system-hub' },
+    { label: 'Eco System Hub', href: '/eco-systems-hub' },
     { label: 'Contact Us', href: '/contact-us' },
 ]
 
