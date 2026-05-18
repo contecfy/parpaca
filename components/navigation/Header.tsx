@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { Menu, X, ArrowRight, CircleArrowOutUpRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../ui/Button'
+import router from 'next/router'
 
 const navItems = [
     { label: 'Home', href: '/' },
@@ -93,7 +94,7 @@ function Header() {
 
                     {/* DESKTOP CTA */}
                     <div className={`hidden items-center lg:flex border-l ${borderColor} px-6 lg:px-8`}>
-                        <Button variant="primary" size="lg">
+                        <Button variant="primary" size="lg" onClick={() => router.push('/become-a-member')} >
                             Become a Member
                             <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
                         </Button>
