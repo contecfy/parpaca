@@ -232,7 +232,7 @@ function AboutContent() {
                         >
                             <div className="relative h-64 w-full overflow-hidden">
                                 <Image
-                                    src="https://images.pexels.com/photos/5408927/pexels-photo-5408927.jpeg"
+                                    src="https://images.pexels.com/photos/7947634/pexels-photo-7947634.jpeg"
                                     alt="Financial Management Oversight"
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -258,7 +258,7 @@ function AboutContent() {
                         >
                             <div className="relative h-64 w-full overflow-hidden">
                                 <Image
-                                    src="https://images.pexels.com/photos/1181373/pexels-photo-1181373.jpeg"
+                                    src="https://images.pexels.com/photos/390426/pexels-photo-390426.png"
                                     alt="Innovation Ecosystems and Research-to-Impact Integration"
                                     fill
                                     className="object-cover transition-transform duration-700 group-hover:scale-105"
