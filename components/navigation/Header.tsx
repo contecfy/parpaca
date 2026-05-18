@@ -39,7 +39,7 @@ function Header() {
             <header
                 className={`
                     sticky top-0 z-50 w-full transition-all duration-500 -mb-18 md:-mb-25
-                    border-t border-b ${borderColor}
+                    md:border-t md:border-b ${borderColor}
                     ${scrolled ? 'bg-white backdrop-blur-xl' : 'bg-transparent'}
                 `}
             >
@@ -58,7 +58,7 @@ function Header() {
                         </div>
                         <div className="">
                             <h2 className={`text-lg font-bold tracking-tight transition-colors duration-300 ${scrolled ? 'text-secondary' : 'text-white'}`}>
-                                Parpaca
+                                PARPACA Africa
                             </h2>
                             <p className={`hidden sm:block text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 ${scrolled ? 'text-light-gray' : 'text-white/70'}`}>
                                 Participatory Action Research and<br /> Policy Advocacy Centre

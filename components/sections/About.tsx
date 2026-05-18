@@ -132,7 +132,7 @@ const AboutSection = () => {
                         {/* IMAGE */}
                         <div className="relative h-[600px] overflow-hidden">
                             <Image
-                                src="https://images.pexels.com/photos/1108821/pexels-photo-1108821.jpeg"
+                                src="https://images.pexels.com/photos/9490630/pexels-photo-9490630.jpeg"
                                 alt="About PARPACA"
                                 fill
                                 className="object-cover"
