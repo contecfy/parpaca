@@ -179,10 +179,10 @@ function Footer() {
                                 Terms & Conditions
                             </Link>
                             <Link
-                                href="lukwagojr.vercel.app"
+                                href="https://lukwagojr.vercel.app"
                                 className="transition-colors duration-300 hover:text-primary"
                             >
-                                Build by Lukwago Joel Jr
+                                Made with ❤️ by Contecfy
                             </Link>
                         </div>
                     </div>
