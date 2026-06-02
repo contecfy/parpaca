@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
 
 import Button from '../ui/Button'
@@ -16,7 +17,15 @@ const quickLinks = [
     { label: 'Contact Us', href: '/contact-us' },
 ]
 
-function Footer() {
+function Footer({ data }: { data?: any }) {
+    const pathname = usePathname();
+    const logoImage = data?.logoImage || '/logo.jpg';
+    const location = data?.location || 'Uganda, Central Kampala, Nakawa Division, Mbuya II,';
+    const phone1 = data?.phone1 || '+256 772 873 735';
+    const email = data?.email || 'info@parpacaafrica.org';
+
+    if (pathname.startsWith('/admin')) return null;
+
     return (
         <footer className="mt-24 bg-primary-black text-white">
             <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
@@ -29,7 +38,7 @@ function Footer() {
                         <div className="flex items-center gap-4">
                             <div className="relative h-24 w-24 overflow-hidden border border-white/10 bg-white p-2">
                                 <Image
-                                    src="/logo.jpg"
+                                    src={logoImage}
                                     alt="Parpaca Foundation"
                                     fill
                                     className="object-contain p-2"
@@ -48,7 +57,7 @@ function Footer() {
                         </div>
 
                         <p className="mt-6 max-w-md text-sm leading-7 text-white/70">
-                            PARPACAs mission is to empower marginalized communities in Uganda through participatory action research, policy advocacy, and sustainable development initiatives.
+                            {data?.footerMission || 'PARPACAs mission is to empower marginalized communities in Uganda through participatory action research, policy advocacy, and sustainable development initiatives.'}
                         </p>
 
                         {/* CONTACT INFO */}
@@ -56,20 +65,17 @@ function Footer() {
 
                             <div className="flex items-start gap-3">
                                 <MapPin size={18} className="mt-0.5 text-primary" />
-
-                                <p>Uganda, Central Kampala, Nakawa Division, Mbuya II,</p>
+                                <p>{location}</p>
                             </div>
 
                             <div className="flex items-center gap-3">
                                 <Phone size={18} className="text-primary" />
-
-                                <p>+256 772 873 735</p>
+                                <p>{phone1}</p>
                             </div>
 
                             <div className="flex items-center gap-3">
                                 <Mail size={18} className="text-primary" />
-
-                                <p>info@parpacaafrica.org</p>
+                                <p>{email}</p>
                             </div>
                         </div>
                     </div>
@@ -96,12 +102,11 @@ function Footer() {
                     {/* NEWSLETTER */}
                     <div>
                         <h3 className="text-lg font-semibold">
-                            Join Our Newsletter
+                            {data?.footerNewsletterTitle || 'Join Our Newsletter'}
                         </h3>
 
                         <p className="mt-4 text-sm leading-7 text-white/70">
-                            Stay updated with our programs, awareness campaigns,
-                            community events, and impact stories.
+                            {data?.footerNewsletterDescription || 'Stay updated with our programs, awareness campaigns, community events, and impact stories.'}
                         </p>
 
                         {/* EMAIL FORM */}
@@ -126,28 +131,28 @@ function Footer() {
                         <div className="mt-8 flex items-center gap-3">
 
                             <Link
-                                href="/"
+                                href={data?.socialFacebook || '/'}
                                 className="flex h-11 w-11 items-center justify-center  text-white/70 transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
                             >
                                 <FaFacebook size={18} />
                             </Link>
 
                             <Link
-                                href="/"
+                                href={data?.socialInstagram || '/'}
                                 className="flex h-11 w-11 items-center justify-center  text-white/70 transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
                             >
                                 <FaInstagram size={18} />
                             </Link>
 
                             <Link
-                                href="/"
+                                href={data?.socialTwitter || '/'}
                                 className="flex h-11 w-11 items-center justify-center  text-white/70 transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
                             >
                                 <FaX size={18} />
                             </Link>
 
                             <Link
-                                href="/"
+                                href={data?.socialLinkedin || '/'}
                                 className="flex h-11 w-11 items-center justify-center  text-white/70 transition-all duration-300 hover:border-primary hover:bg-primary hover:text-white"
                             >
                                 <FaLinkedin size={18} />

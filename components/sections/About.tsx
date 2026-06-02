@@ -5,7 +5,23 @@ import Button from "../ui/Button"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 
-const AboutSection = () => {
+const AboutSection = ({ data }: { data?: any }) => {
+    const eyebrow = data?.eyebrow || 'About Us';
+    const title = data?.title || 'About PARPACA';
+    const descChunk1 = data?.description1 || 'The Participatory Action Research and Policy Advocacy Center Africa (PARPACA) is an independent non-profit organisation and NGO think tank based in Uganda with a pan-African operational footprint.';
+    const descChunk2 = data?.description2 || 'PARPACA advances participatory research, policy analysis, and strategic advocacy to strengthen governance systems, empower communities, and support evidence-based decision-making across Africa.';
+    const descChunk3 = data?.description3 || 'Through collaborations with universities, research institutions, civil society organisations, and community groups, the Center develops sustainable, locally grounded solutions that create long-term social and structural impact.';
+    
+    type Stat = { number: string; label: string };
+    const stats: Stat[] = data?.stats || [
+        { number: '20+', label: 'Research Projects' },
+        { number: '15+', label: 'Strategic Partners' },
+        { number: 'Pan-African', label: 'Operational Reach' }
+    ];
+
+    const buttonText = data?.buttonText || 'Read More';
+    const image = data?.image || 'https://images.pexels.com/photos/9490630/pexels-photo-9490630.jpeg';
+
     return (
         <section className="bg-white">
             <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -19,9 +35,8 @@ const AboutSection = () => {
                         viewport={{ once: true }}
                         className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
                     >
-                        About Us
+                        {eyebrow}
                     </motion.p>
-
                     <motion.h2
                         initial={{ opacity: 0, y: 25 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +49,7 @@ const AboutSection = () => {
                             lg:text-6xl
                         "
                     >
-                        About PARPACA
+                        {title}
                     </motion.h2>
                 </div>
 
@@ -49,71 +64,36 @@ const AboutSection = () => {
                         viewport={{ once: true }}
                     >
                         <p className="text-base leading-6 text-light-gray sm:text-lg">
-                            The Participatory Action Research and Policy Advocacy
-                            Center Africa (PARPACA) is an independent non-profit
-                            organisation and NGO think tank based in Uganda with
-                            a pan-African operational footprint.
-
+                            {descChunk1}
                             <br />
                             <br />
-
-                            PARPACA advances participatory research, policy
-                            analysis, and strategic advocacy to strengthen
-                            governance systems, empower communities, and support
-                            evidence-based decision-making across Africa.
-
+                            {descChunk2}
                             <br />
                             <br />
-
-                            Through collaborations with universities, research
-                            institutions, civil society organisations, and
-                            community groups, the Center develops sustainable,
-                            locally grounded solutions that create long-term
-                            social and structural impact.
+                            {descChunk3}
                         </p>
 
                         {/* STATS */}
                         <div className="mt-10 grid grid-cols-2 gap-8 border-t border-border pt-8 sm:grid-cols-3">
-
-                            <div>
-                                <h3 className="text-3xl font-bold text-primary">
-                                    20+
-                                </h3>
-
-                                <p className="mt-2 text-sm uppercase tracking-[0.15em] text-light-gray">
-                                    Research Projects
-                                </p>
-                            </div>
-
-                            <div>
-                                <h3 className="text-3xl font-bold text-primary">
-                                    15+
-                                </h3>
-
-                                <p className="mt-2 text-sm uppercase tracking-[0.15em] text-light-gray">
-                                    Strategic Partners
-                                </p>
-                            </div>
-
-                            <div>
-                                <h3 className="text-3xl font-bold text-primary">
-                                    Pan-African
-                                </h3>
-
-                                <p className="mt-2 text-sm uppercase tracking-[0.15em] text-light-gray">
-                                    Operational Reach
-                                </p>
-                            </div>
+                            {stats.map((stat, idx) => (
+                                <div key={idx}>
+                                    <h3 className="text-3xl font-bold text-primary">
+                                        {stat.number}
+                                    </h3>
+                                    <p className="mt-2 text-sm uppercase tracking-[0.15em] text-light-gray">
+                                        {stat.label}
+                                    </p>
+                                </div>
+                            ))}
                         </div>
 
-                        {/* BUTTON */}
                         <div className="mt-10">
                             <Button
                                 variant="primary"
                                 size="lg"
                                 className="gap-2"
                             >
-                                Read More
+                                {buttonText}
 
                                 <ArrowRight size={18} />
                             </Button>
@@ -130,10 +110,10 @@ const AboutSection = () => {
                     >
 
                         {/* IMAGE */}
-                        <div className="relative h-[600px] overflow-hidden">
+                        <div className="relative h-[600px] overflow-hidden bg-gray-100">
                             <Image
-                                src="https://images.pexels.com/photos/9490630/pexels-photo-9490630.jpeg"
-                                alt="About PARPACA"
+                                src={image}
+                                alt={title}
                                 fill
                                 className="object-cover"
                             />

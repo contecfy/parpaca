@@ -4,7 +4,15 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Button from "../ui/Button"
 
-const BottomCTA = () => {
+const BottomCTA = ({ data }: { data?: any }) => {
+    const eyebrow = data?.eyebrow || 'Join The Movement';
+    const title = data?.title || 'Creating Lasting\nChange Through\nResearch & Advocacy';
+    const description = data?.description || 'Partner with PARPACA to strengthen communities, advance evidence-based policies, and build sustainable solutions that drive meaningful impact across Africa.';
+    const button1 = data?.button1 || 'Get Involved';
+    const button1Link = data?.button1Link || '#';
+    const button2 = data?.button2 || 'Contact Us';
+    const button2Link = data?.button2Link || '#';
+
     return (
         <section className="bg-white">
             <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -58,7 +66,7 @@ const BottomCTA = () => {
                                     text-secondary
                                 "
                             >
-                                Join The Movement
+                                {eyebrow}
                             </p>
 
                             {/* TITLE */}
@@ -71,12 +79,7 @@ const BottomCTA = () => {
                                     lg:text-6xl
                                 "
                             >
-                                Creating Lasting
-                                <br />
-                                Change Through
-                                <span className="text-secondary">
-                                    {" "}Research & Advocacy
-                                </span>
+                                <span className="whitespace-pre-line">{title}</span>
                             </h2>
 
                             {/* DESCRIPTION */}
@@ -88,10 +91,7 @@ const BottomCTA = () => {
                                     sm:text-lg
                                 "
                             >
-                                Partner with PARPACA to strengthen communities,
-                                advance evidence-based policies, and build
-                                sustainable solutions that drive meaningful
-                                impact across Africa.
+                                {description}
                             </p>
 
                             {/* BUTTONS */}
@@ -102,7 +102,7 @@ const BottomCTA = () => {
                                     size="lg"
                                     className="gap-2 bg-secondary"
                                 >
-                                    Get Involved
+                                    {button1}
 
                                     <ArrowRight size={18} />
                                 </Button>
@@ -118,7 +118,7 @@ const BottomCTA = () => {
                                         hover:bg-primary
                                     "
                                 >
-                                    Contact Us
+                                    {button2}
 
                                     <ArrowRight size={18} />
                                 </Button>

@@ -3,19 +3,18 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-function Hero() {
+function Hero({ data }: { data?: any }) {
+    const bgImage = data?.backgroundImage || '/hands.webp';
+    const title = data?.title || 'Empowering Communities,\nAcross Africa to Shape\nTheir Own Future';
+    const description = data?.description || 'A hybrid NGO think tank and innovation hub advancing community-led research,\ninnovation ecosystems, and evidence-based policy solutions to turn local knowledge into sustainable development impact across Africa.';
+
     return (
         <section className="relative flex min-h-screen items-center overflow-hidden">
 
             {/* BACKGROUND IMAGE */}
             <div
-                className="
-                    absolute inset-0
-                    bg-[url('/hands.webp')]
-                    bg-cover
-                    bg-center
-                    bg-no-repeat
-                "
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: `url('${bgImage}')` }}
             />
 
             {/* DARK OVERLAY */}
@@ -43,16 +42,7 @@ function Hero() {
                             lg:text-8xl
                         "
                     >
-                        Empowering Communities,
-                        <br />
-
-                        <span className="text-primary">
-                            Across Africa to Shape
-                        </span>
-
-                        <br />
-
-                        Their Own Future
+                        <span className="whitespace-pre-line">{title}</span>
                     </motion.h1>
 
                     {/* DESCRIPTION */}
@@ -69,8 +59,7 @@ function Hero() {
                             sm:text-lg
                         "
                     >
-                        A hybrid NGO think tank and innovation hub advancing codddmmunity-led research,
-                        inovation ecosystems, and evidence-based policy solutions to turn local knowledge  into sustainable development impact across Africa.
+                        <span className="whitespace-pre-line">{description}</span>
                     </motion.p>
 
                     {/* STATS */}

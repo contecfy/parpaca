@@ -3,9 +3,10 @@
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 
-const Whatwedo = () => {
+const Whatwedo = ({ data }: { data?: any }) => {
 
-    const services = [
+    type Service = { number: string; title: string; description: string; points: string[] };
+    const services: Service[] = data?.services || [
         {
             number: "01",
             title: "No Poverty (SDG 1)",
@@ -78,7 +79,11 @@ const Whatwedo = () => {
                 "Institutional capacity strengthening",
             ],
         },
-    ]
+    ];
+
+    const title = data?.title || 'Driving Sustainable\nImpact Across Africa';
+    const eyebrow = data?.eyebrow || 'What We Do';
+    const description = data?.description || 'PARPACA advances participatory research, policy advocacy, and community-centered development initiatives aligned with the Sustainable Development Goals (SDGs).';
 
     return (
         <section className="bg-white">
@@ -94,7 +99,7 @@ const Whatwedo = () => {
                         viewport={{ once: true }}
                         className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
                     >
-                        What We Do
+                        {eyebrow}
                     </motion.p>
 
                     <motion.h2
@@ -105,14 +110,12 @@ const Whatwedo = () => {
                         className="
                             text-4xl font-black leading-tight tracking-tight
                             text-secondary
-                            sm:text-5xl
-                            lg:text-6xl
-                        "
-                    >
-                        Driving Sustainable
-                        <br />
-                        Impact Across Africa
-                    </motion.h2>
+                        sm:text-5xl
+                        lg:text-6xl
+                    "
+                >
+                    <span className="whitespace-pre-line">{title}</span>
+                </motion.h2>
 
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -125,13 +128,11 @@ const Whatwedo = () => {
                         className="
                             mt-6 max-w-2xl
                             text-base leading-8 text-light-gray
-                            sm:text-lg
-                        "
-                    >
-                        PARPACA advances participatory research, policy advocacy,
-                        and community-centered development initiatives aligned
-                        with the Sustainable Development Goals (SDGs).
-                    </motion.p>
+                        sm:text-lg
+                    "
+                >
+                    <span className="whitespace-pre-line">{description}</span>
+                </motion.p>
                 </div>
 
                 {/* SERVICES GRID */}

@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { Menu, X, ArrowRight, CircleArrowOutUpRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -16,7 +17,9 @@ const navItems = [
     { label: 'Contact Us', href: '/contact-us' },
 ]
 
-function Header() {
+function Header({ data }: { data?: any }) {
+    const pathname = usePathname();
+    const logoImage = data?.logoImage || '/logo.jpg';
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const [activeItem, setActiveItem] = useState<string | null>(null)
@@ -35,6 +38,8 @@ function Header() {
     // Border color adapts to scroll state
     const borderColor = scrolled ? 'border-black/10' : 'border-white/20'
 
+    if (pathname.startsWith('/admin')) return null;
+
     return (
         <>
             <header
@@ -50,7 +55,7 @@ function Header() {
                     <Link href="/" className="flex items-center gap-3 px-5 lg:px-8">
                         <div className="relative h-16 w-16 md:h-24 md:w-24 overflow-hidden flex-shrink-0">
                             <Image
-                                src="/logo.jpg"
+                                src={logoImage}
                                 alt="Parpaca Foundation Logo"
                                 fill
                                 className="object-contain"

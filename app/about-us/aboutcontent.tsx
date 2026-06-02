@@ -7,7 +7,7 @@ import TeamSection from '@/components/sections/Team'
 import BottomCTA from '@/components/sections/Bottom-CTA'
 import { Target, Eye, Sparkles, Users, Zap, Search, RefreshCw, BookOpen } from 'lucide-react'
 
-function AboutContent() {
+function AboutContent({ data }: { data?: any }) {
     return (
         <div className="overflow-x-hidden bg-white">
             {/* HERO SECTION */}
@@ -16,12 +16,12 @@ function AboutContent() {
                 <div
                     className="
                         absolute inset-0
-                        bg-[url('https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg')]
                         bg-cover
                         bg-center
                         bg-no-repeat
                         opacity-40
                     "
+                    style={{ backgroundImage: `url(${data?.heroBgImage || 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg'})` }}
                 />
                 
                 {/* GRADIENT OVERLAY */}
@@ -35,7 +35,7 @@ function AboutContent() {
                             transition={{ duration: 0.5 }}
                             className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
                         >
-                            Who We Are
+                            {data?.heroSubtitle || 'Who We Are'}
                         </motion.p>
                         
                         <motion.h1
@@ -49,9 +49,9 @@ function AboutContent() {
                                 lg:text-7xl
                             "
                         >
-                            Catalyzing Change
+                            {data?.heroTitleLine1 || 'Catalyzing Change'}
                             <br />
-                            <span className="text-primary">Through Research</span>
+                            <span className="text-primary">{data?.heroTitleLine2 || 'Through Research'}</span>
                         </motion.h1>
 
                         <motion.p
@@ -64,8 +64,7 @@ function AboutContent() {
                                 sm:text-lg
                             "
                         >
-                            We are an independent non-profit organisation and NGO think tank 
-                            advancing participatory research, policy analysis, and strategic advocacy across Africa.
+                            {data?.heroDescription || 'We are an independent non-profit organisation and NGO think tank advancing participatory research, policy analysis, and strategic advocacy across Africa.'}
                         </motion.p>
                     </div>
                 </div>
@@ -82,11 +81,11 @@ function AboutContent() {
                             viewport={{ once: true }}
                         >
                             <h2 className="mb-6 text-3xl font-black text-secondary sm:text-4xl">
-                                Our Story
+                                {data?.storyTitle || 'Our Story'}
                             </h2>
-                            <div className="space-y-6 text-lg leading-relaxed text-light-gray">
+                            <div className="space-y-6 text-lg leading-relaxed text-light-gray whitespace-pre-line">
                                 <p>
-                                   The Participatory Action Research and Policy Advocacy Center Africa (PARPACA) is an independent, non-profit NGO and think tank, registered in Uganda, with a pan-African presence through regional representatives. PARPACA conducts participatory research, rigorous policy analysis, and strategic advocacy to inform evidence-based decision-making, strengthen governance systems, and empower communities to actively shape the policies that impact their social, economic, and political realities.
+                                   {data?.storyDescription || 'The Participatory Action Research and Policy Advocacy Center Africa (PARPACA) is an independent, non-profit NGO and think tank, registered in Uganda, with a pan-African presence through regional representatives. PARPACA conducts participatory research, rigorous policy analysis, and strategic advocacy to inform evidence-based decision-making, strengthen governance systems, and empower communities to actively shape the policies that impact their social, economic, and political realities.'}
                                 </p>
                               
                             </div>
@@ -100,8 +99,8 @@ function AboutContent() {
                             className="relative h-[500px] w-full overflow-hidden shadow-2xl"
                         >
                             <Image
-                                src="https://images.pexels.com/photos/9490630/pexels-photo-9490630.jpeg"
-                                alt="PARPACA Team in Action"
+                                src={data?.storyImage || "https://images.pexels.com/photos/9490630/pexels-photo-9490630.jpeg"}
+                                alt="PARPACA Story"
                                 fill
                                 className="object-cover"
                             />
@@ -126,9 +125,9 @@ function AboutContent() {
                             <div className="mb-6 flex h-16 w-16 items-center justify-center bg-primary/10 text-primary">
                                 <Target size={32} />
                             </div>
-                            <h3 className="mb-4 text-2xl font-bold text-secondary">Our Mission</h3>
+                            <h3 className="mb-4 text-2xl font-bold text-secondary">{data?.missionTitle || 'Our Mission'}</h3>
                             <p className="text-light-gray leading-relaxed">
-                                To advance sustainable development in Africa through participatory research, inclusive innovation, and evidence-based policy.
+                                {data?.missionDescription || 'To advance sustainable development in Africa through participatory research, inclusive innovation, and evidence-based policy.'}
                             </p>
                         </motion.div>
 
@@ -143,9 +142,9 @@ function AboutContent() {
                             <div className="mb-6 flex h-16 w-16 items-center justify-center bg-primary/10 text-primary">
                                 <Eye size={32} />
                             </div>
-                            <h3 className="mb-4 text-2xl font-bold text-secondary">Our Vision</h3>
+                            <h3 className="mb-4 text-2xl font-bold text-secondary">{data?.visionTitle || 'Our Vision'}</h3>
                             <p className="text-light-gray leading-relaxed">
-                               To be Africas leading evidence-driven innovation hub advancing equitable growth, resilient communities, and sustainable impact.
+                               {data?.visionDescription || 'To be Africas leading evidence-driven innovation hub advancing equitable growth, resilient communities, and sustainable impact.'}
                             </p>
                         </motion.div>
 
@@ -182,7 +181,7 @@ function AboutContent() {
                             viewport={{ once: true }}
                             className="mb-6 text-3xl font-black text-secondary sm:text-4xl"
                         >
-                            Core Competences
+                            {data?.competenceTitle || 'Core Competences'}
                         </motion.h2>
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
@@ -191,88 +190,40 @@ function AboutContent() {
                             viewport={{ once: true }}
                             className="text-lg leading-relaxed text-light-gray"
                         >
-                            Our specialized expertise enables us to drive sustainable impact across Africa.
+                            {data?.competenceDescription || 'Our specialized expertise enables us to drive sustainable impact across Africa.'}
                         </motion.p>
                     </div>
 
                     <div className="grid gap-12 lg:grid-cols-3">
-                        {/* Competence 1 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                            className="group flex flex-col border border-border bg-white shadow-xl hover:border-primary/20 hover:shadow-2xl transition-all duration-500"
-                        >
-                            <div className="relative h-64 w-full overflow-hidden">
-                                <Image
-                                    src="https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg"
-                                    alt="MEAL"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                            </div>
-                            <div className="p-8 flex-1">
-                                <h3 className="mb-4 text-xl font-bold text-secondary">
-                                    Monitoring, Evaluation, Accountability, and Learning (MEAL)
-                                </h3>
-                                <p className="text-light-gray leading-relaxed">
-                                    PARPACA designs and implements robust MEAL frameworks to track performance, outcomes, and impact while promoting accountability, transparency, and continuous improvement.
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        {/* Competence 2 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            viewport={{ once: true }}
-                            className="group flex flex-col border border-border bg-white shadow-xl hover:border-primary/20 hover:shadow-2xl transition-all duration-500"
-                        >
-                            <div className="relative h-64 w-full overflow-hidden">
-                                <Image
-                                    src="https://images.pexels.com/photos/7947634/pexels-photo-7947634.jpeg"
-                                    alt="Financial Management Oversight"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                            </div>
-                            <div className="p-8 flex-1">
-                                <h3 className="mb-4 text-xl font-bold text-secondary">
-                                    Financial Management Oversight
-                                </h3>
-                                <p className="text-light-gray leading-relaxed">
-                                    PARPACA delivers rigorous financial management oversight for complex, multi-stakeholder initiatives, ensuring full compliance with donor, regulatory, and national legal requirements. Our oversight framework safeguards transparency, accountability, and optimal resource utilization while mitigating financial risks.
-                                </p>
-                            </div>
-                        </motion.div>
-
-                        {/* Competence 3 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="group flex flex-col border border-border bg-white shadow-xl hover:border-primary/20 hover:shadow-2xl transition-all duration-500"
-                        >
-                            <div className="relative h-64 w-full overflow-hidden">
-                                <Image
-                                    src="https://images.pexels.com/photos/390426/pexels-photo-390426.png"
-                                    alt="Innovation Ecosystems and Research-to-Impact Integration"
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                            </div>
-                            <div className="p-8 flex-1">
-                                <h3 className="mb-4 text-xl font-bold text-secondary">
-                                    Innovation Ecosystems and Research-to-Impact Integration
-                                </h3>
-                                <p className="text-light-gray leading-relaxed">
-                                    PARPACA facilitates dynamic multi-stakeholder innovation ecosystems, linking universities, research institutions, startups, private sector actors, policymakers, and communities. We translate cutting-edge research into practical, scalable solutions that generate systemic and sustainable impact. A key component of our approach is the strategic transfer of knowledge and best practices from the Global North to the Global South, ensuring that innovations are contextually adapted and locally relevant.
-                                </p>
-                            </div>
-                        </motion.div>
+                        {data?.competencesList?.map((comp: any, idx: number) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                                viewport={{ once: true }}
+                                className="group flex flex-col border border-border bg-white shadow-xl hover:border-primary/20 hover:shadow-2xl transition-all duration-500"
+                            >
+                                <div className="relative h-64 w-full overflow-hidden">
+                                    <Image
+                                        src={comp.image || "https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg"}
+                                        alt={comp.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                </div>
+                                <div className="p-8 flex-1">
+                                    <h3 className="mb-4 text-xl font-bold text-secondary">
+                                        {comp.title}
+                                    </h3>
+                                    <p className="text-light-gray leading-relaxed">
+                                        {comp.description}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        )) || (
+                            <div className="text-center text-gray-500 col-span-3">Competences not loaded</div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -288,95 +239,35 @@ function AboutContent() {
                             viewport={{ once: true }}
                             className="text-3xl font-black text-secondary sm:text-4xl"
                         >
-                            Key Principles of Participatory M&E
+                            {data?.principlesTitle || 'Key Principles of Participatory M&E'}
                         </motion.h2>
                     </div>
 
                     <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                        {/* Principle 1 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            viewport={{ once: true }}
-                            className="bg-white p-8 shadow-xl transition-transform hover:-translate-y-2 border border-border"
-                        >
-                            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary/10 text-primary">
-                                <Users size={28} />
-                            </div>
-                            <h3 className="mb-4 text-xl font-bold text-secondary">Inclusivity</h3>
-                            <p className="text-light-gray leading-relaxed">
-                                Engage all stakeholders (beneficiaries, staff, donors, partners) in the M&E process.
-                            </p>
-                        </motion.div>
-                        
-                        {/* Principle 2 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                            viewport={{ once: true }}
-                            className="bg-white p-8 shadow-xl transition-transform hover:-translate-y-2 border border-border"
-                        >
-                            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary/10 text-primary">
-                                <Zap size={28} />
-                            </div>
-                            <h3 className="mb-4 text-xl font-bold text-secondary">Empowerment</h3>
-                            <p className="text-light-gray leading-relaxed">
-                                Enable communities to take ownership of data collection and analysis.
-                            </p>
-                        </motion.div>
-
-                        {/* Principle 3 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                            className="bg-white p-8 shadow-xl transition-transform hover:-translate-y-2 border border-border"
-                        >
-                            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary/10 text-primary">
-                                <Search size={28} />
-                            </div>
-                            <h3 className="mb-4 text-xl font-bold text-secondary">Transparency</h3>
-                            <p className="text-light-gray leading-relaxed">
-                                Share findings openly with all stakeholders.
-                            </p>
-                        </motion.div>
-
-                        {/* Principle 4 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true }}
-                            className="bg-white p-8 shadow-xl transition-transform hover:-translate-y-2 border border-border"
-                        >
-                            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary/10 text-primary">
-                                <RefreshCw size={28} />
-                            </div>
-                            <h3 className="mb-4 text-xl font-bold text-secondary">Flexibility</h3>
-                            <p className="text-light-gray leading-relaxed">
-                                Adapt M&E tools to local contexts and changing needs.
-                            </p>
-                        </motion.div>
-
-                        {/* Principle 5 */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.4 }}
-                            viewport={{ once: true }}
-                            className="bg-white p-8 shadow-xl transition-transform hover:-translate-y-2 border border-border"
-                        >
-                            <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary/10 text-primary">
-                                <BookOpen size={28} />
-                            </div>
-                            <h3 className="mb-4 text-xl font-bold text-secondary">Learning-Oriented</h3>
-                            <p className="text-light-gray leading-relaxed">
-                                Use findings to improve programs rather than just report to donors.
-                            </p>
-                        </motion.div>
+                        {data?.principlesList?.map((prin: any, idx: number) => {
+                            // Helper to select an icon based on index
+                            const IconComponent = [Users, Zap, Search, RefreshCw, BookOpen][idx % 5];
+                            return (
+                                <motion.div
+                                    key={idx}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: idx * 0.1 }}
+                                    viewport={{ once: true }}
+                                    className="bg-white p-8 shadow-xl transition-transform hover:-translate-y-2 border border-border"
+                                >
+                                    <div className="mb-6 flex h-14 w-14 items-center justify-center bg-primary/10 text-primary">
+                                        <IconComponent size={28} />
+                                    </div>
+                                    <h3 className="mb-4 text-xl font-bold text-secondary">{prin.title}</h3>
+                                    <p className="text-light-gray leading-relaxed">
+                                        {prin.description}
+                                    </p>
+                                </motion.div>
+                            );
+                        }) || (
+                             <div className="text-center text-gray-500 col-span-3">Principles not loaded</div>
+                        )}
                     </div>
                 </div>
             </section>

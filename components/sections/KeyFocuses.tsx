@@ -10,46 +10,40 @@ import {
     Lightbulb,
 } from "lucide-react"
 
-const KeyFoucs = () => {
+const KeyFoucs = ({ data }: { data?: any }) => {
 
-    const focusAreas = [
+    type FocusArea = { title: string; description: string; };
+    const focusAreas: FocusArea[] = data?.focusAreas || [
         {
-            icon: Users,
             title: "Grassroots Empowerment",
-            description:
-                "Empowerment is not about giving people power — it’s about unlocking the power they already have.",
+            description: "Empowerment is not about giving people power — it’s about unlocking the power they already have.",
         },
         {
-            icon: Globe,
             title: "Participatory democracy​",
-            description:
-                "By empowering voices and creating space for dialogue,we play a vital role in making governance more inclusive, transparent, and accountable.​",
+            description: "By empowering voices and creating space for dialogue,we play a vital role in making governance more inclusive, transparent, and accountable.​",
         },
         {
-            icon: Scale,
             title: "Policy change​",
-            description:
-                "By mobilizing, educating, and empowering communities to speak truth to power—ensuring their voices lead to laws and systems that serve everyone fairly.​",
+            description: "By mobilizing, educating, and empowering communities to speak truth to power—ensuring their voices lead to laws and systems that serve everyone fairly.​",
         },
         {
-            icon: BookOpen,
             title: "Social Justice",
-            description:
-                "By creating a society where everyone—regardless of gender, race, income, religion, ability, or background—has equal access to opportunities, rights, and resources.​",
+            description: "By creating a society where everyone—regardless of gender, race, income, religion, ability, or background—has equal access to opportunities, rights, and resources.​",
         },
         {
-            icon: HeartHandshake,
             title: "Sustainable Impact",
-            description:
-                "Impact that ends when a project ends is not enough.We believe in impact that grows, multiplies, and continues—powered by communities, for generations to come.",
+            description: "Impact that ends when a project ends is not enough.We believe in impact that grows, multiplies, and continues—powered by communities, for generations to come.",
         },
         {
-            icon: Lightbulb,
             title: "Transparency",
-            description:
-                "We believe that open sharing of information strengthens trust, drives accountability, and ensures that our research and advocacy efforts truly serve the people.​",
+            description: "We believe that open sharing of information strengthens trust, drives accountability, and ensures that our research and advocacy efforts truly serve the people.​",
         },
-    ]
+    ];
+
+    const focusIcons = [Users, Globe, Scale, BookOpen, HeartHandshake, Lightbulb];
+    const eyebrow = data?.eyebrow || 'Key Focus Areas';
+    const title = data?.title || 'Advancing Research,\nAdvocacy & Community Impact';
+    const description = data?.description || 'PARPACA focuses on strengthening communities, influencing policy, and promoting inclusive development through participatory and evidence-based approaches.';
 
     return (
         <section className="bg-white">
@@ -65,7 +59,7 @@ const KeyFoucs = () => {
                         viewport={{ once: true }}
                         className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
                     >
-                        Key Focus Areas
+                        {eyebrow}
                     </motion.p>
 
                     <motion.h2
@@ -80,9 +74,7 @@ const KeyFoucs = () => {
                             lg:text-6xl
                         "
                     >
-                        Advancing Research,
-                        <br />
-                        Advocacy & Community Impact
+                        <span className="whitespace-pre-line">{title}</span>
                     </motion.h2>
 
                     <motion.p
@@ -99,9 +91,7 @@ const KeyFoucs = () => {
                             sm:text-lg
                         "
                     >
-                        PARPACA focuses on strengthening communities,
-                        influencing policy, and promoting inclusive development
-                        through participatory and evidence-based approaches.
+                        {description}
                     </motion.p>
                 </div>
 
@@ -109,7 +99,7 @@ const KeyFoucs = () => {
                 <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
                     {focusAreas.map((item, index) => {
-                        const Icon = item.icon
+                        const Icon = focusIcons[index % focusIcons.length]
 
                         return (
                             <motion.div

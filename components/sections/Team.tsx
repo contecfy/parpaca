@@ -7,9 +7,10 @@ import Link from "next/link"
 import { FaLinkedin } from "react-icons/fa"
 import { FaX } from "react-icons/fa6"
 
-const TeamSection = () => {
+const TeamSection = ({ data }: { data?: any }) => {
 
-    const teamMembers = [
+    type TeamMember = { name: string; role: string; description: string; image: string; linkedin?: string; twitter?: string };
+    const teamMembers: TeamMember[] = data?.teamMembers || [
         {
             name: "Alice Kiingi",
             role: "Founder & Executive Director  Head of Projects – Africa/Europe",
@@ -34,7 +35,11 @@ const TeamSection = () => {
             description: "Join us in promoting inclusive decision-making for marginalized communities through participatory research and targeted policy advocacy.",
             image: "/eudu.webp",
         }
-    ]
+    ];
+
+    const eyebrow = data?.eyebrow || 'Our Team';
+    const title = data?.title || 'Meet The People\nDriving PARPACA Forward';
+    const description = data?.description || 'Our multidisciplinary team combines research, advocacy, policy expertise, and community engagement to create meaningful and sustainable impact across Africa.';
 
     return (
         <section className="bg-white">
@@ -50,7 +55,7 @@ const TeamSection = () => {
                         viewport={{ once: true }}
                         className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
                     >
-                        Our Team
+                        {eyebrow}
                     </motion.p>
 
                     <motion.h2
@@ -65,9 +70,7 @@ const TeamSection = () => {
                             lg:text-6xl
                         "
                     >
-                        Meet The People
-                        <br />
-                        Driving PARPACA Forward
+                        <span className="whitespace-pre-line">{title}</span>
                     </motion.h2>
 
                     <motion.p
@@ -84,9 +87,7 @@ const TeamSection = () => {
                             sm:text-lg
                         "
                     >
-                        Our multidisciplinary team combines research,
-                        advocacy, policy expertise, and community engagement
-                        to create meaningful and sustainable impact across Africa.
+                        {description}
                     </motion.p>
                 </div>
 
@@ -147,8 +148,8 @@ const TeamSection = () => {
                                     "
                                 >
 
-                                    <Link
-                                        href="/"
+                                    {member.linkedin && <Link
+                                        href={member.linkedin}
                                         className="
                                             flex h-10 w-10 items-center justify-center
                                             bg-white text-secondary
@@ -157,10 +158,10 @@ const TeamSection = () => {
                                         "
                                     >
                                         <FaLinkedin size={18} />
-                                    </Link>
+                                    </Link>}
 
-                                    <Link
-                                        href="/"
+                                    {member.twitter && <Link
+                                        href={member.twitter}
                                         className="
                                             flex h-10 w-10 items-center justify-center
                                             bg-white text-secondary
@@ -169,7 +170,7 @@ const TeamSection = () => {
                                         "
                                     >
                                         <FaX size={18} />
-                                    </Link>
+                                    </Link>}
                                 </div>
 
                                 {/* INFO */}

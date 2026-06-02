@@ -5,7 +5,27 @@ import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import Button from "../ui/Button"
 
-const Collaboration = () => {
+const Collaboration = ({ data }: { data?: any }) => {
+    const eyebrow = data?.eyebrow || 'Collaboration & Support';
+    const title = data?.title || 'Building Stronger Communities\nThrough Partnerships';
+    const description = data?.description || 'We collaborate with vulnerable and marginalised populations to co-create knowledge, amplify community voices, and influence policies that dismantle systemic injustices. Through grassroots inclusion, participatory research, and strategic advocacy, we work to transform inequitable structures and strengthen communities’ capacity to claim their rights and shape their futures.';
+    
+    const partnershipCard = data?.partnershipCard || {
+        title: 'Partner With PARPACA',
+        desc1: 'Universities and research institutions across Africa can collaborate with PARPACA to access grant calls, participate in community-based research projects, and contribute to evidence-driven development initiatives across the continent.',
+        desc2: 'Thank you for your interest in becoming part of the PARPACA network. Our team will guide you through the collaboration and membership process.',
+        buttonText: 'Partner With Us',
+        image: 'https://images.pexels.com/photos/6147210/pexels-photo-6147210.jpeg'
+    };
+
+    const donationCard = data?.donationCard || {
+        title: 'Support Our Mission',
+        desc1: 'Your contribution helps PARPACA expand participatory research, strengthen advocacy efforts, and support vulnerable communities across Africa through impactful and sustainable programs.',
+        desc2: 'Payments to Participatory Action Research and Policy Advocacy Center Africa can be made using different secure and convenient payment methods.',
+        buttonText: 'Donate',
+        image: 'https://images.pexels.com/photos/36467878/pexels-photo-36467878.jpeg'
+    };
+
     return (
         <section className="bg-white">
             <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
@@ -20,7 +40,7 @@ const Collaboration = () => {
                         viewport={{ once: true }}
                         className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-primary"
                     >
-                        Collaboration & Support
+                        {eyebrow}
                     </motion.p>
 
                     <motion.h2
@@ -35,9 +55,7 @@ const Collaboration = () => {
                             lg:text-6xl
                         "
                     >
-                        Building Stronger Communities
-                        <br />
-                        Through Partnerships
+                        <span className="whitespace-pre-line">{title}</span>
                     </motion.h2>
 
                     <motion.p
@@ -54,14 +72,7 @@ const Collaboration = () => {
                             sm:text-lg
                         "
                     >
-                        We collaborate with vulnerable and marginalised
-                        populations to co-create knowledge, amplify community
-                        voices, and influence policies that dismantle systemic
-                        injustices. Through grassroots inclusion,
-                        participatory research, and strategic advocacy,
-                        we work to transform inequitable structures and
-                        strengthen communities’ capacity to claim their
-                        rights and shape their futures.
+                        {description}
                     </motion.p>
                 </div>
 
@@ -88,8 +99,8 @@ const Collaboration = () => {
                         <div className="relative h-[320px] overflow-hidden">
 
                             <Image
-                                src="https://images.pexels.com/photos/6147210/pexels-photo-6147210.jpeg"
-                                alt="Partnership"
+                                src={partnershipCard.image}
+                                alt={partnershipCard.title}
                                 fill
                                 className="
                                     object-cover
@@ -110,7 +121,7 @@ const Collaboration = () => {
                                     text-secondary
                                 "
                             >
-                                Partner With PARPACA
+                                {partnershipCard.title}
                             </h3>
 
                             <p
@@ -119,12 +130,7 @@ const Collaboration = () => {
                                     text-light-gray
                                 "
                             >
-                                Universities and research institutions across
-                                Africa can collaborate with PARPACA to access
-                                grant calls, participate in community-based
-                                research projects, and contribute to
-                                evidence-driven development initiatives across
-                                the continent.
+                                {partnershipCard.desc1}
                             </p>
 
                             <p
@@ -133,9 +139,7 @@ const Collaboration = () => {
                                     text-light-gray
                                 "
                             >
-                                Thank you for your interest in becoming part of
-                                the PARPACA network. Our team will guide you
-                                through the collaboration and membership process.
+                                {partnershipCard.desc2}
                             </p>
 
                             {/* BUTTON */}
@@ -146,7 +150,7 @@ const Collaboration = () => {
                                     className="gap-2 bg-secondary"
 
                                 >
-                                    Partner With Us
+                                    {partnershipCard.buttonText}
 
                                     <ArrowRight size={18} />
                                 </Button>
@@ -177,8 +181,8 @@ const Collaboration = () => {
                         <div className="relative h-[320px] overflow-hidden">
 
                             <Image
-                                src="https://images.pexels.com/photos/36467878/pexels-photo-36467878.jpeg"
-                                alt="Donate"
+                                src={donationCard.image}
+                                alt={donationCard.title}
                                 fill
                                 className="
                                     object-cover
@@ -199,7 +203,7 @@ const Collaboration = () => {
                                     text-white
                                 "
                             >
-                                Support Our Mission
+                                {donationCard.title}
                             </h3>
 
                             <p
@@ -208,11 +212,7 @@ const Collaboration = () => {
                                     text-white/70
                                 "
                             >
-                                Your contribution helps PARPACA expand
-                                participatory research, strengthen advocacy
-                                efforts, and support vulnerable communities
-                                across Africa through impactful and sustainable
-                                programs.
+                                {donationCard.desc1}
                             </p>
 
                             <p
@@ -221,9 +221,7 @@ const Collaboration = () => {
                                     text-white/70
                                 "
                             >
-                                Payments to Participatory Action Research and
-                                Policy Advocacy Center Africa can be made using
-                                different secure and convenient payment methods.
+                                {donationCard.desc2}
                             </p>
 
                             {/* BUTTON */}
@@ -233,7 +231,7 @@ const Collaboration = () => {
                                     size="lg"
                                     className="gap-2 bg-secondary"
                                 >
-                                    Donate
+                                    {donationCard.buttonText}
 
                                     <ArrowRight size={18} />
                                 </Button>

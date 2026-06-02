@@ -42,21 +42,41 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+import { db } from '@/lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
+
+export const dynamic = 'force-dynamic';
+
+async function getGlobalData() {
+    try {
+        const docRef = doc(db, 'globals', 'layout');
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            return docSnap.data();
+        }
+    } catch(err) {
+        // Suppress expected errors during build
+    }
+    return null;
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const globalData = await getGlobalData();
+
   return (
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <PreHeader />
-        <Header />
+        <PreHeader data={globalData} />
+        <Header data={globalData} />
         {children}
-        <Footer />
+        <Footer data={globalData} />
       </body>
     </html>
   );
