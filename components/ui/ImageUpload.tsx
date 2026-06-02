@@ -35,11 +35,15 @@ export default function ImageUpload({ value, onChange }: ImageUploadProps) {
             const data = await response.json();
             
             // Pass the securely hosted Cloudinary URL back to the parent form:
-            if (data.secure_url) {
+            if (response.ok && data.secure_url) {
                 onChange(data.secure_url);
+            } else {
+                console.error('Cloudinary upload error:', data);
+                alert(data.error?.message || 'Upload failed. Please check the console.');
             }
         } catch (error) {
-            console.error('Upload failed', error);
+            console.error('Upload request failed', error);
+            alert('Upload request failed. Please check the network connectivity or console.');
         } finally {
             setIsUploading(false);
         }

@@ -1,7 +1,7 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getFirestore as getFirestoreLite } from 'firebase/firestore/lite';
-
+import { getAuth } from 'firebase/auth';
 const firebaseConfig = {
     apiKey: "AIzaSyA0Q8zjdN3iaIdVED5Uo214isb6shTOY9Q",
     authDomain: "papacasample.firebaseapp.com",

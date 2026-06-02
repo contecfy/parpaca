@@ -60,6 +60,8 @@ async function getGlobalData() {
     return null;
 }
 
+import { HideOnAuthAndAdmin } from '@/components/navigation/LayoutVisibility';
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -73,10 +75,14 @@ export default async function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <PreHeader data={globalData} />
-        <Header data={globalData} />
+        <HideOnAuthAndAdmin>
+          <PreHeader data={globalData} />
+          <Header data={globalData} />
+        </HideOnAuthAndAdmin>
         {children}
-        <Footer data={globalData} />
+        <HideOnAuthAndAdmin>
+          <Footer data={globalData} />
+        </HideOnAuthAndAdmin>
       </body>
     </html>
   );
