@@ -2,12 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { Menu, X, ArrowRight, CircleArrowOutUpRight } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Button from '../ui/Button'
-import router from 'next/router'
 
 const navItems = [
     { label: 'Home', href: '/' },
@@ -19,6 +18,7 @@ const navItems = [
 
 function Header({ data }: { data?: any }) {
     const pathname = usePathname();
+    const router = useRouter();
     const logoImage = data?.logoImage || '/logo.jpg';
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
@@ -217,7 +217,10 @@ function Header({ data }: { data?: any }) {
                                     size="lg"
                                     fullWidth
                                     className="gap-2"
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={() => {
+                                        setMobileMenuOpen(false)
+                                        router.push('/become-a-member')
+                                    }}
                                 >
                                     Become a Member
                                     <ArrowRight size={16} />
