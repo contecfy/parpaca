@@ -10,8 +10,8 @@ interface ImageUploadProps {
 export default function ImageUpload({ value, onChange }: ImageUploadProps) {
     const [isUploading, setIsUploading] = useState(false);
 
-    const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || '';
-    const UPLOAD_PRESET = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || '';
+    const CLOUD_NAME = 'dpwcuvwhk';
+    const UPLOAD_PRESET = 'ml_default';
 
     const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
