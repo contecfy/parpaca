@@ -6,11 +6,12 @@ export default function Sidebar() {
     const pathname = usePathname();
 
     const navItems = [
+        { name: 'Global Components', href: '/admin/global' },
         { name: 'Home Page CMS', href: '/admin/home' },
         { name: 'About Page CMS', href: '/admin/about' },
         { name: 'Services Page CMS', href: '/admin/services' },
         { name: 'Become Member CMS', href: '/admin/become-member' },
-        { name: 'Global Components', href: '/admin/global' },
+       
     ];
 
     return (
