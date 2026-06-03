@@ -1,9 +1,14 @@
 'use client';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { getAuth, signOut } from 'firebase/auth';
+import { app } from '@/lib/firebase';
 
 export default function Sidebar() {
     const pathname = usePathname();
+    const router = useRouter();
+    const [loggingOut, setLoggingOut] = useState(false);
 
     const navItems = [
         { name: 'Global Components', href: '/admin/global' },
@@ -11,7 +16,6 @@ export default function Sidebar() {
         { name: 'About Page CMS', href: '/admin/about' },
         { name: 'Services Page CMS', href: '/admin/services' },
         { name: 'Become Member CMS', href: '/admin/become-member' },
-       
     ];
 
     return (
@@ -39,7 +43,7 @@ export default function Sidebar() {
                 })}
             </nav>
 
-            <div className="p-4 border-t bg-gray-50 shrink-0">
+            <div className="p-4 border-t bg-gray-50 shrink-0 space-y-3">
                 <Link 
                     href="/" 
                     target="_blank"
@@ -47,6 +51,25 @@ export default function Sidebar() {
                 >
                     View Live Site
                 </Link>
+                <button
+                    type="button"
+                    onClick={async () => {
+                        setLoggingOut(true);
+                        try {
+                            const auth = getAuth(app);
+                            await signOut(auth);
+                            router.push('/login');
+                        } catch (error) {
+                            console.error('Logout failed:', error);
+                        } finally {
+                            setLoggingOut(false);
+                        }
+                    }}
+                    disabled={loggingOut}
+                    className="w-full px-4 py-2 rounded-lg text-sm font-medium text-white bg-[#D4503B] hover:bg-[#b63e2d] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    {loggingOut ? 'Signing out…' : 'Logout'}
+                </button>
             </div>
         </aside>
     );
